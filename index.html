@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Dinámica con Navegación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav {
+            width: 200px;
+            background-color: #292b2c;
+            padding: 10px 0;
+            height: 100vh;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 20px 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c;
+        }
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        section {
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        .container {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            color: #e74c3c;
+        }
+        p, ul {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .image-space {
+            margin: 20px 0;
+            text-align: center;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            color: #bbb;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+        th {
+            background-color: #444;
+        }
+        td input, td select {
+            width: 100%;
+            padding: 5px;
+            background: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d62d20;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#section1" class="active" onclick="showSection('section1')">Información</a></li>
+            <li><a href="#section2" onclick="showSection('section2')">Predicción</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="section1" class="active">
+            <h1>La Anemia</h1>
+            <div class="container">
+                <h2>Definición</h2>
+                <p>La anemia es una condición médica caracterizada por una disminución en el número de glóbulos rojos o en la concentración de hemoglobina en la sangre, lo que reduce la capacidad de la sangre para transportar oxígeno a los tejidos del cuerpo. Esto puede resultar en síntomas como fatiga, debilidad, palidez y dificultad para respirar.</p>
+                <div class="image-space">
+				<img src="diagnostico-anemia.jpg" alt="Representación de la anemia" style="max-width: 45%; height: auto; border-radius: 10px;">
+				</div>
+
+            </div>
+            <div class="container">
+                <h2>Causas de la Anemia</h2>
+                <ul>
+                    <li><strong>Deficiencia de hierro:</strong> Es la causa más común debido a una dieta inadecuada o pérdidas de sangre.</li>
+                    <li><strong>Deficiencia de vitaminas:</strong> Falta de vitamina B12 o ácido fólico, causando anemias megaloblásticas.</li>
+                    <li><strong>Anemia por enfermedades crónicas:</strong> Enfermedades como insuficiencia renal o cáncer interfieren en la producción de glóbulos rojos.</li>
+                    <li><strong>Trastornos genéticos:</strong> La anemia de células falciformes y la talasemia son ejemplos hereditarios.</li>
+                    <li><strong>Pérdida excesiva de sangre:</strong> Como hemorragias internas o menstruales abundantes.</li>
+                    <li><strong>Problemas en la médula ósea:</strong> Trastornos como leucemia o aplasia medular afectan la producción de glóbulos rojos.</li>
+                </ul>
+                <div class="image-space">
+				<img src="anemia.webp" alt="Representación de la anemia" style="max-width: 25%; height: auto; border-radius: 10px;"></div>
+            </div>
+            <div class="container">
+                <h2>Consecuencias de la Anemia</h2>
+                <ul>
+                    <li><strong>Fatiga y debilidad:</strong> Debido a la falta de oxígeno en los tejidos.</li>
+                    <li><strong>Dificultad para respirar:</strong> Más notoria durante esfuerzos físicos.</li>
+                    <li><strong>Palidez:</strong> Por la disminución de glóbulos rojos.</li>
+                    <li><strong>Compromiso cardiovascular:</strong> Puede causar insuficiencia cardíaca en casos graves.</li>
+                    <li><strong>Daño a órganos vitales:</strong> En casos de anemia prolongada.</li>
+                </ul>
+                <div class="image-space">
+				<img src="consecuencias_anemia.jpg" alt="Representación de la anemia" style="max-width: 45%; height: auto; border-radius: 10px;"></div>
+            </div>
+            <div class="container">
+                <h2>Diagnóstico de la Anemia</h2>
+                <ul>
+                    <li><strong>Historia clínica:</strong> Evaluación de síntomas, antecedentes y factores de riesgo.</li>
+                    <li><strong>Hemograma completo:</strong> Mide glóbulos rojos, hemoglobina y hematocrito.</li>
+                    <li><strong>Concentración de hierro y ferritina:</strong> Identifica deficiencias de hierro.</li>
+                    <li><strong>Pruebas adicionales:</strong> Como biopsias, endoscopias y estudios de médula ósea.</li>
+                </ul>
+                <div class="image-space">
+				<img src="diagnostico.png" alt="Representación de la anemia" style="max-width: 45%; height: auto; border-radius: 10px;"></div>
+            </div>
+        </section>
+
+        <section id="section2">
+            <h1>Tabla Dinámica para Predicción de Anemia</h1>
+            <input type="file" id="csv-upload" accept=".csv" />
+            <table id="anemia-table">
+                <thead>
+                    <tr>
+                        <th>Género</th>
+                        <th>Hemoglobina (g/dL)</th>
+                        <th>MCH (pg)</th>
+                        <th>MCHC (g/dL)</th>
+                        <th>MCV (fL)</th>
+                        <th>Resultado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button onclick="addRow()">Agregar Fila</button>
+            <button onclick="predictResults()">Predecir</button>
+        </section>
+    </main>
+    <script>
+        const limits = {
+            Hemoglobina: [6.4, 19.5],
+            MCH: [16.8, 74.5],
+            MCHC: [28.0, 69.6],
+            MCV: [55.7, 115.3]
+        };
+
+        function showSection(id) {
+            const sections = document.querySelectorAll('section');
+            const links = document.querySelectorAll('nav ul li a');
+            sections.forEach(section => section.classList.remove('active'));
+            links.forEach(link => link.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelector(`a[href="#${id}"]`).classList.add('active');
+        }
+
+        function addRow() {
+            const table = document.querySelector("#anemia-table tbody");
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><select><option value="Hombre">Hombre</option><option value="Mujer">Mujer</option></select></td>
+                <td><input type="number" step="0.1" placeholder="Hemoglobina"></td>
+                <td><input type="number" step="0.1" placeholder="MCH"></td>
+                <td><input type="number" step="0.1" placeholder="MCHC"></td>
+                <td><input type="number" step="0.1" placeholder="MCV"></td>
+                <td><span class="result"></span></td>
+                <td><button onclick="deleteRow(this)">Eliminar</button></td>`;
+            table.appendChild(row);
+        }
+
+        function deleteRow(button) {
+            button.closest("tr").remove();
+        }
+
+        function predictResults() {
+            const rows = document.querySelectorAll("#anemia-table tbody tr");
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll("input");
+                const resultCell = row.querySelector(".result");
+
+                inputs.forEach(input => {
+                    const field = input.placeholder;
+                    const value = parseFloat(input.value);
+
+                    if (isNaN(value)) {
+                        alert(`Por favor, completa todos los valores en ${field}.`);
+                        return;
+                    }
+
+                    const [min, max] = limits[field];
+                    if (value < min || value > max) {
+                        alert(`El valor de ${field} debe estar entre ${min} y ${max}.`);
+                        return;
+                    }
+                });
+
+                const hemoglobin = parseFloat(inputs[0].value);
+                const mch = parseFloat(inputs[1].value);
+                const mchc = parseFloat(inputs[2].value);
+                const mcv = parseFloat(inputs[3].value);
+
+                if (hemoglobin < 12 || mch < 26 || mchc < 31 || mcv < 80) {
+                    resultCell.textContent = "Alto";
+                } else {
+                    resultCell.textContent = "Bajo";
+                }
+            });
+        }
+
+        document.getElementById("csv-upload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const rows = e.target.result.split("\n").map(row => row.split(","));
+                    rows.forEach(data => {
+                        const table = document.querySelector("#anemia-table tbody");
+                        const newRow = table.insertRow();
+                        newRow.innerHTML = `
+                            <td><select><option value="Hombre" ${data[0] === "Hombre" ? "selected" : ""}>Hombre</option><option value="Mujer" ${data[0] === "Mujer" ? "selected" : ""}>Mujer</option></select></td>
+                            <td><input type="number" value="${data[1]}" step="0.1" placeholder="Hemoglobina"></td>
+                            <td><input type="number" value="${data[2]}" step="0.1" placeholder="MCH"></td>
+                            <td><input type="number" value="${data[3]}" step="0.1" placeholder="MCHC"></td>
+                            <td><input type="number" value="${data[4]}" step="0.1" placeholder="MCV"></td>
+                            <td><span class="result"></span></td>
+                            <td><button onclick="deleteRow(this)">Eliminar</button></td>`;
+                    });
+                };
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+</html>
